@@ -1,7 +1,7 @@
 import { asyncRoutes, constantRoutes } from '@/router'
 
 /**
- * Use meta.role to determine if the current user has permission
+ * 判断当前用户是否有权限
  * @param roles
  * @param route
  */
@@ -39,13 +39,16 @@ const state = {
   addRoutes: []
 }
 
+// 是唯一允许更改Vuex store在状态state的地方，定义了一个名为SET_ROUTES的mutation，
 const mutations = {
   SET_ROUTES: (state, routes) => {
     state.addRoutes = routes
-    state.routes = constantRoutes.concat(routes)
+    state.routes = constantRoutes
+    // state.routes = constantRoutes.concat(routes)
   }
 }
 
+// 第一个参数是context对象，用了解构赋值语法，从context中取出了commit方法，避免每次都context.commit
 const actions = {
   generateRoutes({ commit }, roles) {
     return new Promise(resolve => {

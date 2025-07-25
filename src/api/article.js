@@ -1,5 +1,14 @@
 import request from '@/utils/request'
 
+// 检查到url是相对路径时，会自动拼上baseUrl
+export function merchantPage(data) {
+  return request({
+    url: '/merchant/page',
+    method: 'post',
+    data
+  })
+}
+
 export function fetchList(query) {
   return request({
     url: '/vue-element-admin/article/list',
